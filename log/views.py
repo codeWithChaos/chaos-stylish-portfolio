@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 def log_in(request):
@@ -44,6 +44,10 @@ def sign_up(request):
         else:
             return HttpResponse("Passwords do not match")
     return render(request, 'log/signup.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
 
 def index(request):
     return render(request, 'log/index.html')
